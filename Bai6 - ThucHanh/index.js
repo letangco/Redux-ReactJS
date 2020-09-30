@@ -80,11 +80,11 @@ store.dispatch(changeSpeed(3));
 
 store.dispatch(changeSpeed(2));
 console.log(store.getState());
-store.dispatch({type: 'TURN_OFF'});
+store.dispatch(turnOff());
 console.log(store.getState());
-store.dispatch({type: 'TURN_ON'});
+store.dispatch(turnOn());
 console.log(store.getState());
-store.dispatch({type: 'TURN_OFF'});
+store.dispatch(turnOff());
 // Thay đổi State
 console.log(store.getState());
 
