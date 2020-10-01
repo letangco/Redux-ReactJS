@@ -9,7 +9,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tasks: [],
       isDisplayForm: false,
       taskEditing: null,
       filter: {
@@ -24,15 +23,7 @@ class App extends Component {
     }
     this.onGenerateData = this.onGenerateData.bind(this);
   }
-  componentWillMount() {
-    if (localStorage && localStorage.getItem('tasks')) {
-      // Chuyển sang Object 
-      var tasks = JSON.parse(localStorage.getItem('tasks'));
-      this.setState({
-        tasks: tasks
-      });
-    }
-  }
+ 
   onGenerateData() {
     var tasks = [
       {
@@ -185,10 +176,7 @@ class App extends Component {
 
   }
   onFilter = (filterName, filterStatus) => {
-    // console.log(filterName,"- ", filterStatus);
     filterStatus = parseInt(filterStatus, 10);
-    // console.log(typeof(filterStatus));
-
     this.setState({
       filter: {
         name: filterName.toLowerCase(),
@@ -214,56 +202,52 @@ class App extends Component {
 
 
   render() {
-    // var {tasks} = this.state; // var task = this.state.task;
-    var tasks = this.state.tasks;
     var isDisplayForm = this.state.isDisplayForm;
     var taskEditing = this.state.taskEditing;
-    var filter = this.state.filter;
-    // console.log(filter);
-    var keyword = this.state.keyword;
+    // var filter = this.state.filter;
+    // var keyword = this.state.keyword;
     var sortBy = this.state.sortBy;
     var sortValue = this.state.sortValue;
-    if (filter) {
-      if (filter.name) {
-        // console.log(tasks.filter);
-        tasks = tasks.filter((task1) => {
-          return task1.name.toLowerCase().indexOf(filter.name) !== -1;
-        });
-      }
-      tasks = tasks.filter((task1) => {
-        if (filter.status === 2) {
-          return task1;
-        }
-        else {
-          return task1.status === (filter.status === 1 ? true : false);
-        }
-      });
-    }
+    // if (filter) {
+    //   if (filter.name) {
+    //     tasks = tasks.filter((task1) => {
+    //       return task1.name.toLowerCase().indexOf(filter.name) !== -1;
+    //     });
+    //   }
+    //   tasks = tasks.filter((task1) => {
+    //     if (filter.status === 2) {
+    //       return task1;
+    //     }
+    //     else {
+    //       return task1.status === (filter.status === 1 ? true : false);
+    //     }
+    //   });
+    // }
 
 
-    if (keyword) {
-      tasks = tasks.filter((tasks) => {
-        return tasks.name.toLowerCase().indexOf(keyword) !== -1;
-      });
-    }
+    // if (keyword) {
+    //   tasks = tasks.filter((tasks) => {
+    //     return tasks.name.toLowerCase().indexOf(keyword) !== -1;
+    //   });
+    // }
     // Sắp xếp theo name
-    if (sortBy === 'name') {
-      tasks.sort((a, b) => {
-        if (a.name > b.name) return sortValue;
-        else if (a.name < b.name) return -sortValue;
-        else return 0;
-      });
-    }
-    else {
-      tasks.sort((a, b) => {
-        if (a.status > b.status) return -sortValue;
-        else if (a.status < b.status) return sortValue;
-        else return 0;
-      });
-    }
+    // if (sortBy === 'name') {
+    //   tasks.sort((a, b) => {
+    //     if (a.name > b.name) return sortValue;
+    //     else if (a.name < b.name) return -sortValue;
+    //     else return 0;
+    //   });
+    // }
+    // else {
+    //   tasks.sort((a, b) => {
+    //     if (a.status > b.status) return -sortValue;
+    //     else if (a.status < b.status) return sortValue;
+    //     else return 0;
+    //   });
+    // }
 
     var elmTaskForm = isDisplayForm === true ?
-      <TaskForm taskEditing={taskEditing} Receive={this.onCloseForm} onSubmit={this.onSubmit} /> : '';
+      <TaskForm taskEditing={taskEditing} Receive={this.onCloseForm} /> : '';
     return (
 
       <div className="container">

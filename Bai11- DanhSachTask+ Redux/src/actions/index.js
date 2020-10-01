@@ -5,3 +5,11 @@ export const listAll=()=>{
         type: types.LIST_ALL
     };
 };
+
+// Tham số là 1 cái task được gửi từ component
+export const addTask =(task)=>{
+    return {
+        type:types.ADD_TASK,
+        task:task
+    }
+}

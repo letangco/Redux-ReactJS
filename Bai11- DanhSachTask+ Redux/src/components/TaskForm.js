@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-
+import {connect} from 'react-redux';
+// Import action của redux
+import *as actions from '../actions/index';
 class TaskForm extends Component {
   constructor(props) {
     super(props);
@@ -48,7 +50,7 @@ class TaskForm extends Component {
     var name = target.name;
     var value = target.value;
     if (name === 'status') {
-      value = target.value === 'true' ? true : false;
+      value = target.value === 'true' ? true : false ;
       // console.log(1)
     }
     this.setState({
@@ -58,8 +60,8 @@ class TaskForm extends Component {
   }
   onSubmit = (event) => {
     event.preventDefault();
-    // console.log(this.state.name , ' - ', this.state.status);
-    this.props.onSubmit(this.state);
+    // Go store Redux to get data
+    this.props.onAddTask(this.state);
     // Xóa dữ liệu đã thêm
     this.onClear();
     // Đóng form khi thêm mới công việc
@@ -118,4 +120,24 @@ class TaskForm extends Component {
 
 }
 
-export default TaskForm;
+// State của thằng Component, return về 1 cái object
+
+const mapStateToProps = (state) =>{
+  return {
+    task : state.task
+  };
+};
+
+// action và dispatch để gọi lên reducer lên phân tích
+const mapDispatchToProps = (dispatch, props)=>{
+  return {
+    // task là một công việc cần thêm vào từ component
+    // chuyển mapDispatchToProps sang props của component
+    onAddTask :(task) =>{
+      // truyền cái action vào
+      dispatch(actions.addTask(task));
+    }
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(TaskForm);
