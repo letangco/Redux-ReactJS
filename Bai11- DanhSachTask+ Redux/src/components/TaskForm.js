@@ -41,10 +41,10 @@ class TaskForm extends Component {
       });
     }
   }
-  closeForm(value) {
-    this.props.Receive(value);
-    // console.log(value);
+  closeForm() {
+    this.props.onToggleForm();
   }
+
   onChange = (event) => {
     var target = event.target;
     var name = target.name;
@@ -55,7 +55,6 @@ class TaskForm extends Component {
     }
     this.setState({
       [name]: value
-
     });
   }
   onSubmit = (event) => {
@@ -65,7 +64,7 @@ class TaskForm extends Component {
     // Xóa dữ liệu đã thêm
     this.onClear();
     // Đóng form khi thêm mới công việc
-    this.closeForm(-1);
+    this.props.onToggleForm();
   }
   onClear = () => {
     this.setState({
@@ -80,7 +79,7 @@ class TaskForm extends Component {
         <div className="panel panel-warning">
           <div className="panel-heading">
             <h3 className="panel-title">{id !== "" ? "Cập nhật công việc" : "Thêm công việc"}
-              <button type="button" className="fa fa-times-circle text-right" onClick={() => this.closeForm(-1)}></button>
+              <button type="button" className="fa fa-times-circle text-right" onClick={() => this.closeForm()}></button>
             </h3>
           </div>
           <div className="panel-body">
@@ -136,6 +135,9 @@ const mapDispatchToProps = (dispatch, props)=>{
     onAddTask :(task) =>{
       // truyền cái action vào
       dispatch(actions.addTask(task));
+    },
+    onToggleForm: ()=>{
+      dispatch(actions.toggleForm());
     }
   }
 }

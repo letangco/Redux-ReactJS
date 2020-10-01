@@ -4,12 +4,13 @@ import TaskForm from './components/TaskForm';
 import Control from './components/Control';
 import TaskList from './components/TaskList';
 import { v4 as uuidv4 } from "uuid";
+import {connect} from 'react-redux';
+import * as action from './actions/index';
 // import DemoRandom from './components/random';
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isDisplayForm: false,
       taskEditing: null,
       filter: {
         name: '',
@@ -23,7 +24,7 @@ class App extends Component {
     }
     this.onGenerateData = this.onGenerateData.bind(this);
   }
- 
+
   onGenerateData() {
     var tasks = [
       {
@@ -52,32 +53,28 @@ class App extends Component {
   }
   // ComponentWillMount khi F5 trang thì nó sẽ được gọi đầu tiên và được gọi duy nhất 1 lần
   onToggleForm = () => {
-    if (this.state.isDisplayForm === true && this.state.taskEditing !== null) {
-      this.setState({
-        isDisplayForm: true,
-        taskEditing: null
-      });
-    } else {
-      this.setState({
-        isDisplayForm: !this.isDisplayForm,
-        taskEditing: null
-      });
-    }
+    // if (this.state.isDisplayForm === true && this.state.taskEditing !== null) {
+    //   this.setState({
+    //     isDisplayForm: true,
+    //     taskEditing: null
+    //   });
+    // } else {
+    //   this.setState({
+    //     isDisplayForm: !this.isDisplayForm,
+    //     taskEditing: null
+    //   });
+    // }
+    this.props.onToggleForm();
+    console.log(this.props.isDisplayForm);
   }
-  onCloseForm = (value) => {
-    if (value === -1) {
-      this.setState({
-        isDisplayForm: false,
-        taskEditing: null
-      });
-    }
-    // console.log(this.state.status);
+  onCloseForm = () => {
+    this.props.onToggleForm();
   }
-  onShowForm = () => {
-    this.setState({
-      isDisplayForm: true
-    });
-  }
+  // onShowForm = () => {
+  //   this.setState({
+  //     isDisplayForm: true
+  //   });
+  // }
   onSubmit = (data) => {
     var { tasks } = this.state;
     if (data.id === '') {
@@ -102,8 +99,6 @@ class App extends Component {
     });
     localStorage.setItem('tasks', JSON.stringify(tasks));
     console.log(data);
-
-
   }
   onAppChangeStatus = (value) => {
     console.log(value);
@@ -148,33 +143,29 @@ class App extends Component {
         });
       }
       localStorage.setItem('tasks', JSON.stringify(tasks));
-      this.onCloseForm(-1);
+      this.onCloseForm();
     }
 
 
   }
-  onOpenFormApp = (value) => {
-    // console.log(value);
-    this.onToggleForm();
-    var i = 0;
-    var index = 0;
-    for (i; i < this.state.tasks.length; i++) {
-      if (this.state.tasks[i].id === value) {
-        // console.log(this.state.tasks[i]);
-        index = i;
-      }
-    }
-    // console.log("posion edit: "+ index);
-    var tasks = this.state.tasks;
-    var taskEditing1 = tasks[index];
-    // console.log(taskEditing1);
-    // Bất đồng bộ
-    this.setState({
-      taskEditing: taskEditing1
-    });
-    this.onShowForm();
+  // onOpenFormApp = (value) => {
+  //   // console.log(value);
+  //   this.onToggleForm();
+  //   var i = 0;
+  //   var index = 0;
+  //   for (i; i < this.state.tasks.length; i++) {
+  //     if (this.state.tasks[i].id === value) {
+  //       index = i;
+  //     }
+  //   }
+  //   var tasks = this.state.tasks;
+  //   var taskEditing1 = tasks[index];
+  //   // Bất đồng bộ
+  //   this.setState({
+  //     taskEditing: taskEditing1
+  //   });
 
-  }
+  // }
   onFilter = (filterName, filterStatus) => {
     filterStatus = parseInt(filterStatus, 10);
     this.setState({
@@ -202,7 +193,7 @@ class App extends Component {
 
 
   render() {
-    var isDisplayForm = this.state.isDisplayForm;
+    var isDisplayForm = this.props.isDisplayForm;
     var taskEditing = this.state.taskEditing;
     // var filter = this.state.filter;
     // var keyword = this.state.keyword;
@@ -247,9 +238,8 @@ class App extends Component {
     // }
 
     var elmTaskForm = isDisplayForm === true ?
-      <TaskForm taskEditing={taskEditing} Receive={this.onCloseForm} /> : '';
+      <TaskForm taskEditing={taskEditing}  /> : '';
     return (
-
       <div className="container">
         <div className="text-center">
           <h1>QUẢN LÝ CÔNG VIỆC</h1>
@@ -282,18 +272,29 @@ class App extends Component {
         {/* <DemoRandom /> */}
 
       </div>
-
-
-
-
-
-
-
-
     );
   }
-
-
 }
 
-export default App;
+// State là giá trị của store true/false
+const mapStateToProps = (state) =>{
+  return {
+    isDisplayForm: state.isDisplayForm
+  };
+}
+
+const mapDispatchToProps =(dispatch, props)=>{
+  return  {
+    onToggleForm : ()=>{
+      dispatch(action.toggleForm());
+    },
+    onCloseForm: () =>{
+      dispatch(action.closeForm());
+    },
+    onOpenForm : ()=>{
+      dispatch(action.openForm())
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
