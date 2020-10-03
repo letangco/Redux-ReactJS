@@ -70,11 +70,6 @@ class App extends Component {
   onCloseForm = () => {
     this.props.onToggleForm();
   }
-  // onShowForm = () => {
-  //   this.setState({
-  //     isDisplayForm: true
-  //   });
-  // }
   onSubmit = (data) => {
     var { tasks } = this.state;
     if (data.id === '') {

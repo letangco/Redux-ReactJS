@@ -4,10 +4,11 @@ import *as actions from '../actions/index';
 class TaskItem extends Component{
     ChangeStatus(){
         this.props.onUpdateStatus(this.props.task.id);
+        
     }
     deleteItem = ()=>
     {
-        this.props.onDeleteItem(this.props.task.id);
+        this.props.onDeleteTask(this.props.task.id);
         // console.log(this.props.task.id);
         // console.log(1);
     }
@@ -53,6 +54,9 @@ const mapDispatchToProps = (dispatch, props) =>{
     return {
         onUpdateStatus : (id)=>{
             dispatch(actions.UpdateStatus(id));
+        },
+        onDeleteTask: (id) =>{
+            dispatch(actions.deleteTask(id));
         }
     }
 }

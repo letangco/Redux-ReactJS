@@ -44,12 +44,12 @@ var myReducer = (state = initialState, action) => {
             }
             console.log(index);
             if (index !== null) {
-                var cloneTask = {...state[index]};
+                var cloneTask = { ...state[index] };
                 cloneTask.status = !cloneTask.status;
                 // state[index] = cloneTask;
 
                 // Copy phần tử tại index rồi sau đó cập nhật lại status tại vị trí index
-                state[index] ={
+                state[index] = {
                     ...state[index],
                     status: !state[index].status
                 }
@@ -57,6 +57,23 @@ var myReducer = (state = initialState, action) => {
                 return [...state]
             }
             return state;
+        }
+        case types.DELETE_TASK: {
+            console.log('Delete: ', action.id);
+            let index;
+            for (i = 0; i < state.length; i++) {
+                if (state[i].id === action.id) {
+                    index = i;
+                }
+            }
+            const r = window.confirm("Do you want to Delete Item?");
+            if (r === true) {
+                cloneTask = state;
+                cloneTask.splice(index,1);
+                localStorage.setItem('tasks', JSON.stringify(cloneTask));
+                return [...cloneTask];
+            }
+            return [...state];
         }
         default:
             return state;
