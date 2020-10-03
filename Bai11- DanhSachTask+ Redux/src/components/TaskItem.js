@@ -1,9 +1,9 @@
 import React, {Component } from 'react';
-
+import {connect} from 'react-redux';
+import *as actions from '../actions/index';
 class TaskItem extends Component{
     ChangeStatus(){
-        // console.log(this.props.task.id);
-        this.props.onChangeStatus(this.props.task.id);
+        this.props.onUpdateStatus(this.props.task.id);
     }
     deleteItem = ()=>
     {
@@ -24,7 +24,8 @@ class TaskItem extends Component{
                     <td>{task.name}</td>
                     <td>
                         <div className="text-center">
-                        <span className={task.status === true ? 'label label-success' : 'label label-danger'} onClick = {() => this.ChangeStatus()}>{task.status ===true ? 'Kích hoạt' : 'Ẩn'}</span>
+                        <span className={task.status === true ? 'label label-success' : 'label label-danger'} 
+                        onClick = {() => this.ChangeStatus()}>{task.status ===true ? 'Kích hoạt' : 'Ẩn'}</span>
                         </div>
                     </td>
                     <td>
@@ -41,4 +42,19 @@ class TaskItem extends Component{
         );
     }
 }
-export default TaskItem;
+
+const matchStateToProps = (state)=>{
+    return {
+        
+    }
+}
+
+const mapDispatchToProps = (dispatch, props) =>{
+    return {
+        onUpdateStatus : (id)=>{
+            dispatch(actions.UpdateStatus(id));
+        }
+    }
+}
+
+export default connect(matchStateToProps,mapDispatchToProps)(TaskItem);

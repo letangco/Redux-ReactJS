@@ -22,13 +22,40 @@ var myReducer = (state = initialState, action) => {
             localStorage.setItem('tasks', JSON.stringify(state));
             return [...updateState];
         }
-        case types.TOGGLE_FORM:{
+        case types.TOGGLE_FORM: {
             return state;
         }
-        case types.OPEN_FORM:{
+        case types.OPEN_FORM: {
             return state;
         }
-        case types.CLOSE_FORM:{
+        case types.CLOSE_FORM: {
+            return state;
+        }
+        case types.UPDATE_STATUS_TASK: {
+            console.log(action);
+            var index;
+            var value = action.id;
+            // Tìm vị trí cần updates chỉnh sửa status
+            for (var i = 0; i < state.length; i++) {
+                if (state[i].id === value) {
+                    console.log("vị trí: " + i);
+                    index = i;
+                }
+            }
+            console.log(index);
+            if (index !== null) {
+                var cloneTask = {...state[index]};
+                cloneTask.status = !cloneTask.status;
+                // state[index] = cloneTask;
+
+                // Copy phần tử tại index rồi sau đó cập nhật lại status tại vị trí index
+                state[index] ={
+                    ...state[index],
+                    status: !state[index].status
+                }
+                localStorage.setItem('tasks', JSON.stringify(state));
+                return [...state]
+            }
             return state;
         }
         default:

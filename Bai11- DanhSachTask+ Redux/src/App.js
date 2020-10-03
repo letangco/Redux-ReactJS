@@ -100,27 +100,27 @@ class App extends Component {
     localStorage.setItem('tasks', JSON.stringify(tasks));
     console.log(data);
   }
-  onAppChangeStatus = (value) => {
-    console.log(value);
-    // console.log(this.state.tasks.id);
-    var index;
-    for (var i = 0; i < this.state.tasks.length; i++) {
-      if (this.state.tasks[i].id === value) {
-        console.log("vị trí: " + i);
-        // console.log(1);
-        index = i;
-      }
-    }
-    console.log(index);
-    var task = this.state.tasks;
-    if (index !== null) {
-      task[index].status = !task[index].status;
-      this.setState({
-        tasks: task
-      });
-      localStorage.setItem('tasks', JSON.stringify(task));
-    }
-  }
+  // onAppChangeStatus = (value) => {
+  //   console.log(value);
+  //   // console.log(this.state.tasks.id);
+  //   var index;
+  //   for (var i = 0; i < this.state.tasks.length; i++) {
+  //     if (this.state.tasks[i].id === value) {
+  //       console.log("vị trí: " + i);
+  //       // console.log(1);
+  //       index = i;
+  //     }
+  //   }
+  //   console.log(index);
+  //   var task = this.state.tasks;
+  //   if (index !== null) {
+  //     task[index].status = !task[index].status;
+  //     this.setState({
+  //       tasks: task
+  //     });
+  //     localStorage.setItem('tasks', JSON.stringify(task));
+  //   }
+  // }
   onDeleteItemApp = (value) => {
     console.log(value);
     var index;
@@ -262,7 +262,6 @@ class App extends Component {
             <br />
             <TaskList
               // tasks={tasks}
-              onAppChangeStatus={this.onAppChangeStatus}
               onDeleteItemApp={this.onDeleteItemApp}
               onOpenFormApp={this.onOpenFormApp}
               onFilter={this.onFilter}

@@ -29,3 +29,10 @@ export const closeForm =()=>{
         type: types.CLOSE_FORM
     };
 };
+// Cần truyền vào tham số là id cần được cập nhật
+export const UpdateStatus =(id)=>{
+    return {
+        type: types.UPDATE_STATUS_TASK,
+        id: id
+    }
+}
