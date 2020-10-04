@@ -5,3 +5,7 @@ export const CLOSE_FORM = 'CLOSE_FORM';
 export const OPEN_FORM = 'OPEN_FORM';
 export const UPDATE_STATUS_TASK = 'UPDATE_STATUS_TASK';
 export const DELETE_TASK = 'DELETE_TASK';
+export const ON_TOGGLE_UPDATE_TASK = 'ON_TOGGLE_UPDATE_TASK';
+export const FIND_TASK = 'FIND_TASK';
+export const FILTER_TABLE = 'FILTER_TABLE';
+export const RESET_FILTER_TASK = 'RESET_FILTER_TASK';

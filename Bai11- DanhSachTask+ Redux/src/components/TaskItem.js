@@ -14,6 +14,7 @@ class TaskItem extends Component{
     }
     openForm = () =>{
         this.props.onOpenForm(this.props.task.id);
+        this.props.onToggleEditTask(this.props.task.id);
     }
     render()
     {
@@ -57,6 +58,9 @@ const mapDispatchToProps = (dispatch, props) =>{
         },
         onDeleteTask: (id) =>{
             dispatch(actions.deleteTask(id));
+        },
+        onToggleEditTask :(id)=>{
+            dispatch(actions.onToggleEditTask(id));
         }
     }
 }

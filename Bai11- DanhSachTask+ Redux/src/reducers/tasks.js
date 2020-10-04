@@ -38,11 +38,9 @@ var myReducer = (state = initialState, action) => {
             // Tìm vị trí cần updates chỉnh sửa status
             for (var i = 0; i < state.length; i++) {
                 if (state[i].id === value) {
-                    console.log("vị trí: " + i);
                     index = i;
                 }
             }
-            console.log(index);
             if (index !== null) {
                 var cloneTask = { ...state[index] };
                 cloneTask.status = !cloneTask.status;
@@ -73,6 +71,10 @@ var myReducer = (state = initialState, action) => {
                 localStorage.setItem('tasks', JSON.stringify(cloneTask));
                 return [...cloneTask];
             }
+            return [...state];
+        }
+        case types.ON_TOGGLE_UPDATE_TASK:{
+            console.log('Edit on ',action.id);
             return [...state];
         }
         default:

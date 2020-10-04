@@ -43,3 +43,30 @@ export const deleteTask = (id)=>{
         id:id
     }
 }
+
+export const onToggleEditTask = (id)=>{
+    return {
+        type: types.ON_TOGGLE_UPDATE_TASK,
+        id:id
+    }
+}
+
+export const onFindTask = (keyword) =>{
+    return {
+        type: types.FIND_TASK,
+        keyword: keyword
+    }
+}
+// Truyen object gom filtername va filter status
+export const filterTask = (filter) =>{
+    return{
+        type: types.FILTER_TABLE,
+        filter : filter
+    }
+}
+
+export const resetFilterTask = ()=>{
+    return {
+        type: types.RESET_FILTER_TASK
+    }
+}

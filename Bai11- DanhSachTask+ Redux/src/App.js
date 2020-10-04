@@ -12,12 +12,6 @@ class App extends Component {
     super(props);
     this.state = {
       taskEditing: null,
-      filter: {
-        name: '',
-        status: 2
-      },
-      // filterName: '',
-      // filterStatus: '2',
       keyword: '',
       sortBy: '',
       sortValue: null
@@ -95,27 +89,7 @@ class App extends Component {
     localStorage.setItem('tasks', JSON.stringify(tasks));
     console.log(data);
   }
-  // onAppChangeStatus = (value) => {
-  //   console.log(value);
-  //   // console.log(this.state.tasks.id);
-  //   var index;
-  //   for (var i = 0; i < this.state.tasks.length; i++) {
-  //     if (this.state.tasks[i].id === value) {
-  //       console.log("vị trí: " + i);
-  //       // console.log(1);
-  //       index = i;
-  //     }
-  //   }
-  //   console.log(index);
-  //   var task = this.state.tasks;
-  //   if (index !== null) {
-  //     task[index].status = !task[index].status;
-  //     this.setState({
-  //       tasks: task
-  //     });
-  //     localStorage.setItem('tasks', JSON.stringify(task));
-  //   }
-  // }
+ 
   onDeleteItemApp = (value) => {
     console.log(value);
     var index;
@@ -161,16 +135,7 @@ class App extends Component {
   //   });
 
   // }
-  onFilter = (filterName, filterStatus) => {
-    filterStatus = parseInt(filterStatus, 10);
-    this.setState({
-      filter: {
-        name: filterName.toLowerCase(),
-        status: filterStatus
-      }
-    })
-
-  }
+  
   onSearch = (value) => {
     console.log(value);
     this.setState({
@@ -194,28 +159,9 @@ class App extends Component {
     // var keyword = this.state.keyword;
     var sortBy = this.state.sortBy;
     var sortValue = this.state.sortValue;
-    // if (filter) {
-    //   if (filter.name) {
-    //     tasks = tasks.filter((task1) => {
-    //       return task1.name.toLowerCase().indexOf(filter.name) !== -1;
-    //     });
-    //   }
-    //   tasks = tasks.filter((task1) => {
-    //     if (filter.status === 2) {
-    //       return task1;
-    //     }
-    //     else {
-    //       return task1.status === (filter.status === 1 ? true : false);
-    //     }
-    //   });
-    // }
 
 
-    // if (keyword) {
-    //   tasks = tasks.filter((tasks) => {
-    //     return tasks.name.toLowerCase().indexOf(keyword) !== -1;
-    //   });
-    // }
+    
     // Sắp xếp theo name
     // if (sortBy === 'name') {
     //   tasks.sort((a, b) => {
@@ -259,11 +205,9 @@ class App extends Component {
               // tasks={tasks}
               onDeleteItemApp={this.onDeleteItemApp}
               onOpenFormApp={this.onOpenFormApp}
-              onFilter={this.onFilter}
             />
           </div>
         </div>
-        {/* <DemoRandom /> */}
 
       </div>
     );

@@ -3,12 +3,7 @@ import Search from './Search';
 import Sort from './Sort';
 
 class Control extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      keyword: ''
-    }
-  }
+  
   onSearch = (value) => {
     // console.log(value);
     this.props.onSearch(value);

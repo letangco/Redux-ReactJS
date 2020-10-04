@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import {connect} from 'react-redux';
+import *as actions from '../actions/index';
 
 class Search extends Component{
   constructor (props)
@@ -14,9 +15,6 @@ class Search extends Component{
     var target = event.target;
     var name = target.name;
     var value= target.value;
-    this.setState({
-      [name]: value
-    });
   }
   onSearch =()=>{
     // console.log(this.state);
@@ -45,4 +43,18 @@ class Search extends Component{
   
 }
 
-export default Search;
+const matchStateToProps = (state)=>{
+  return {
+    search: state.keyword
+  }
+}
+
+const mapDispatchToProps = (dispatch, props) =>{
+  return {
+     onSearch: (value)=>{
+       dispatch(actions.onFindTask(value));
+     }
+  }
+}
+
+export default connect(matchStateToProps,mapDispatchToProps)(Search);
