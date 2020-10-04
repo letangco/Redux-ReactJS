@@ -1,0 +1,140 @@
+body{
+  display: flex;
+  justify-content: center;
+}
+.App {
+  text-align: center;
+  height: 100%;
+  width: 600px;
+  background-color: #F5F5F5;
+}
+header{
+  border: 1px solid #F5F5F5;
+  width: 100%;
+  background-color: #ffffff;
+}
+header h1{
+  color: #B83F45;
+  font-size: 80px;
+}
+
+.input_task{
+  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 55px;
+  overflow: hidden;
+  border: 1px solid #d4d4e3;
+  background-color: #ffffff;
+}
+.input_task .select_all{
+  width: 10%;
+  background-color: #ffffff;
+}
+.input_task .editText{
+  height: 100%;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.input_task .editText input{
+  width: 100%;
+  height: 55px;
+  border: none;
+  font-size: 30px;
+  padding-left: 10px;
+  font-style: italic;
+  font-weight: 400;
+  background-color: transparent;
+}
+.input_task .editText input:focus{
+  border: 1px solid #ffffff;
+  outline: none;
+}
+.item_task{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #d4d4e3;
+  border-left: 1px solid #d4d4e3;
+  border-right: 1px solid #d4d4e3;
+  background-color: #fdf9ff;
+  height: auto;
+}
+.item_task ul{
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.item_task ul li{
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #d4d4e3;
+  position: relative;
+  height: 100%;
+}
+.item_task ul li .select_task{
+  width: 10%;
+}
+.item_task li .name_task{
+  width: 90%;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.item_task li .name_task p{
+  font-style: normal;
+  font-size: 23px;
+  font-weight: 400;
+}
+
+.item_task .btn_delete_task{
+  position: absolute;
+  top: 30%;
+  right: 12px;
+}
+
+.info_task{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  border: 1px solid #d4d4e3;
+
+}
+.info_task .total_quantity_task{
+  margin-left: 10px;
+}
+.delete_task{
+  cursor: pointer;
+}
+.info_task .action_clear{
+  margin-right: 10px;
+}
+.info_task .toggle_filter_task button,
+.action_clear button{
+  font-size: 16px;
+  margin: 0 2px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.info_task .toggle_filter_task button:hover,
+.action_clear button:hover{
+  outline: 1px solid #72b626;
+}
+.info_task .toggle_filter_task button:focus,
+.action_clear button:focus{
+  outline: 1px solid #ffb400;
+}
