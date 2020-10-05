@@ -93,9 +93,15 @@ header h1{
 }
 
 .item_task li .name_task p{
-  font-style: normal;
+  font-style: initial;
   font-size: 23px;
   font-weight: 400;
+}
+
+.item_task li .name_task .line_through{
+  text-decoration: line-through;
+  color: #d4d4e3;
+  font-style: italic;
 }
 
 .item_task .btn_delete_task{
@@ -137,4 +143,7 @@ header h1{
 .info_task .toggle_filter_task button:focus,
 .action_clear button:focus{
   outline: 1px solid #ffb400;
+}
+.btn_delete_task button{
+  display: contents;
 }

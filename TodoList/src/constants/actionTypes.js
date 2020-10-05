@@ -1,3 +1,7 @@
-export const ACTION = 'ACTION';
 export const ADD_TASK = 'ADD_TASK';
 export const RENDER_LIST_TASK = 'RENDER_LIST_TASK';
+export const DELETE_TASK = 'DELETE_TASK';
+export const HANDLE_CHANGE_STATUS = 'HANDLE_CHANGE_STATUS';
+export const GET_ALL_TASK = 'GET_ALL_TASK';
+export const GET_ACTIVE_TASK = 'GET_ACTIVE_TASK';
+export const GET_COMPLETE_TASK = 'GET_COMPLETE_TASK';

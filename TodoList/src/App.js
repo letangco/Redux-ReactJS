@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import *as action from './actions/index';
 import { connect } from 'react-redux';
 import './App.css';
 import Header from './components/Header';
@@ -12,10 +11,6 @@ class App extends Component {
     this.state = {
       checked: true
     }
-  }
-  onAction = () => {
-    this.props.onClickButtonAction()
-    console.log(1)
   }
   handleChange = (event) => {
     this.setState({
@@ -45,7 +40,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch, props) => {
   return {
     onClickButtonAction: () => {
-      dispatch(action.onAction1());
     }
   }
 }
